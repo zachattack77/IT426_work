@@ -2,7 +2,6 @@ package ui;
 
 import java.util.ArrayList;
 import java.util.List;
-import controller.Controller;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Node;
