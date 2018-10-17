@@ -39,10 +39,6 @@ public class CalculatorUI extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        // Create the instance of the calculator engine -
-        // the controller - to handle GUI events
-
-
         try {
             BorderPane root = new BorderPane();
 
