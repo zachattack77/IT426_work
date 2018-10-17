@@ -16,15 +16,26 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
-
+/**
+ * calculator user interface class
+ * @author zach Kunitsa
+ * @version 1.0
+ */
 public class CalculatorUI extends Application {
 
+    public static final int WIDTH = 435;
+    public static final int HEIGHT = 265;
+    public static final double VGAP = 5.0;
+    public static final double HGAP = 5.0;
+    public static final double BUTTON_HEIGHT = 37.0;
+    public static final double BUTTON_WIDTH = 132.0;
 
     List<Node> buttons= new ArrayList<>();
     EventHandler<ActionEvent> calculatorController;
 
     TextField textField = new TextField();
     GridPane buttonsPanel = new GridPane();
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -36,9 +47,8 @@ public class CalculatorUI extends Application {
         try {
             BorderPane root = new BorderPane();
 
-            // Center - a grid pane with buttons
-            buttonsPanel.setVgap(5.0);
-            buttonsPanel.setHgap(5.0);
+            buttonsPanel.setVgap(VGAP);
+            buttonsPanel.setHgap(HGAP);
             buttonsPanel.setAlignment(Pos.CENTER);
             buttonsPanel.setPadding(new Insets(10,10,10,10));
             root.setCenter(buttonsPanel);
@@ -69,7 +79,7 @@ public class CalculatorUI extends Application {
 
             buttonsPanel.getChildren().addAll(buttons);
 
-            Scene scene = new Scene(root,435,265);
+            Scene scene = new Scene(root, WIDTH, HEIGHT);
 
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -91,15 +101,14 @@ public class CalculatorUI extends Application {
         Button createButton = new Button(button);
 
         GridPane.setConstraints(createButton, x, y, colSpan, rowSpan);
-        createButton.setPrefHeight(37.0);
-        createButton.setPrefWidth(132.0);
+        createButton.setPrefHeight(BUTTON_HEIGHT);
+        createButton.setPrefWidth(BUTTON_WIDTH);
         createButton.setMaxWidth(Double.MAX_VALUE);
         createButton.setMaxHeight(Double.MAX_VALUE);
         createButton.setOpaqueInsets(new Insets(5,5,5,5));
 
         createButton.setOnAction(calculatorController);
         buttons.add(createButton);
-
 
     }
 }
