@@ -2,6 +2,7 @@ package ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import controller.Controller;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Node;
@@ -22,16 +23,16 @@ import javafx.geometry.Pos;
  */
 public class CalculatorUI extends Application {
 
-    public static final int WIDTH = 435;
-    public static final int HEIGHT = 265;
+    public static final int WIDTH = 250;
+    public static final int HEIGHT = 250;
     public static final double VGAP = 5.0;
     public static final double HGAP = 5.0;
     public static final double BUTTON_HEIGHT = 37.0;
-    public static final double BUTTON_WIDTH = 132.0;
+    public static final double BUTTON_WIDTH = 50.0;
+    Controller controller = new Controller();
 
     List<Node> buttons= new ArrayList<>();
     EventHandler<ActionEvent> calculatorController;
-
     TextField textField = new TextField();
     GridPane buttonsPanel = new GridPane();
 
@@ -105,6 +106,10 @@ public class CalculatorUI extends Application {
         createButton.setOnAction(calculatorController);
         buttons.add(createButton);
 
+        createButton.setOnAction(event -> {
+            controller.newNumber(createButton.getText());
+            textField.setText(controller.receiveNumber());
+        });
     }
 }
 
