@@ -13,12 +13,12 @@ public class Calculator {
 
     /**
      * check if a number has been pressed and saved
-     * @param newNumber
+     * @param newNumber next number pressed
      */
     public void saveNumber(String newNumber){
 
         int intNumber = Integer.parseInt(newNumber);
-        //concatinate the numbers and save to numberPressed
+        //concatenate the numbers and save to numberPressed
         if(numberPressed != 0 && operator == null){
             numberPressed = Integer.parseInt(numberPressed + newNumber);
         }
@@ -28,7 +28,7 @@ public class Calculator {
         }
 
         //do the math and save the result
-        else if(numberPressed != 0 && (!operator.equals(""))){
+        else if(!operator.equals("")){
 
             switch (operator){
                 case "+":
@@ -52,7 +52,7 @@ public class Calculator {
 
     /**
      * save pressed operator
-     * @param newOperator
+     * @param newOperator next operator pressed
      */
     public void saveOperator(String newOperator){
         if(numberPressed != 0) {
@@ -62,7 +62,7 @@ public class Calculator {
 
     /**
      *display current number in the textbox
-     * @return
+     * @return current number
      */
     public String displayCurrentNum(){
         //return currentNumber + "";
@@ -71,13 +71,19 @@ public class Calculator {
 
     /**
      * enter button
-     * @return
+     *
      */
-    public String enterButton(){
+    public void enterButton(){
         //reset the operator
         operator = "";
-        return numberPressed + "";
     }
 
 
+    @Override
+    public String toString() {
+        return "Calculator{" +
+                "numberPressed=" + numberPressed +
+                ", operator='" + operator + '\'' +
+                '}';
+    }
 }

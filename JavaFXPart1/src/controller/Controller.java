@@ -9,32 +9,34 @@ import calculator.Calculator;
 public class Controller {
 
     private Calculator model;
-    private String currentNum;
 
+
+    /**
+     *
+     */
     public Controller(){
         model = new Calculator();
     }
 
     /**
-     * button clicks
-     * @param clickedButton
-     * @return
+     * button clicked
+     * @param clickedButton button clicked
      */
-    public String newNumber(String clickedButton) {
+    public void newNumber(String clickedButton) {
 
-        if (clickedButton.toLowerCase().equals("Enter")) {
-            return model.enterButton();
-        } else if (isNumeric(clickedButton)) {
+        if (isNumeric(clickedButton)) {
             model.saveNumber(clickedButton);
-            return model.displayCurrentNum();
+            model.displayCurrentNum();
+        } else if (clickedButton.toLowerCase().equals("Enter")) {
+            model.enterButton();
         } else {//if its anything else save as an operator
             model.saveOperator(clickedButton);
-            return model.displayCurrentNum();
+            model.displayCurrentNum();
         }
     }
     /**
-     * recieve the number
-     * @return
+     * receive the number
+     * @return current button
      */
     public String receiveNumber(){
 
@@ -42,11 +44,14 @@ public class Controller {
     }
 
     private boolean isNumeric(String str) {
-        try {
-            double d = Double.parseDouble(str);
-        } catch(NumberFormatException nfe) {
-            return false;
-        }
-        return true;
+        return str.matches("-?\\d+(\\.\\d+)?");
+    }
+
+
+    @Override
+    public String toString() {
+        return "Controller{" +
+                "model=" + model +
+                '}';
     }
 }
